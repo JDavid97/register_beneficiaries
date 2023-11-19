@@ -2,10 +2,13 @@ package frames;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PanelMenu extends javax.swing.JFrame {   
     String actualDate;
@@ -23,16 +26,16 @@ public class PanelMenu extends javax.swing.JFrame {
         jlDate.setText( actualDate);
         
         Color colorMainButton = new Color(38, 69, 159); 
-        jbAddUser.setBackground(colorMainButton);
-        jbDeleteUser.setBackground(colorMainButton);
-        jbListUsers.setBackground(colorMainButton);
+        jbConsumption.setBackground(colorMainButton);
+        jbBeneficiaries.setBackground(colorMainButton);
+        jbLunchOfTheDay.setBackground(colorMainButton);
         
-        FileManagement fileManagement = new FileManagement(this);
-        fileManagement.setSize(1033, 654);
-        fileManagement.setLocation(0, 0);                  
+        PanelWelcome pWelcome = new PanelWelcome(this);
+        pWelcome.setSize(1057, 660);
+        pWelcome.setLocation(0, 0);                  
         
         content.removeAll();
-        content.add(fileManagement, BorderLayout.CENTER);
+        content.add(pWelcome, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();      
         
@@ -62,42 +65,29 @@ public class PanelMenu extends javax.swing.JFrame {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
-    }
-    
-    public JLabel getNameFileSelected() {
-        return jlNameFileSelected;
-    }
-    
-    public void setTextNameFileSelected(String val){
-        jlNameFileSelected.setText(val);
-    }
-    
-    public JLabel getIsUploaded() {
-        return jlIsUploaded;
-    }
-    
-    public void setTextIsUploaded(String val) {
-        jlIsUploaded.setText(val);
-    }
-    
-    public JLabel getIconFile() {
-        return jlIcon;
-    }
-    
-    public void setIconFile(String val) {
-        jlIcon.setText(val);
-    }
+    }    
     
     public JButton getButtonAddUser() {
-        return jbAddUser;
+        return jbConsumption;
     }
     
     public JButton getButtonDeleteUser() {
-        return jbDeleteUser;
+        return jbBeneficiaries;
     }
     
     public JButton getButtonListUsers() {
-        return jbListUsers;
+        return jbLunchOfTheDay;
+    }
+    
+    public void setPanelContent(JPanel val) {
+        content.removeAll();
+        content.add(val, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint(); 
+    }
+    
+    public JPanel getPanelContent() {
+        return content;
     }
 
     /**
@@ -114,20 +104,20 @@ public class PanelMenu extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jpLeftPanel = new javax.swing.JPanel();
         jlLogotipe = new javax.swing.JLabel();
-        jbAddUser = new javax.swing.JButton();
-        jbDeleteUser = new javax.swing.JButton();
-        jbListUsers = new javax.swing.JButton();
+        jbConsumption = new javax.swing.JButton();
+        jbBeneficiaries = new javax.swing.JButton();
+        jbLunchOfTheDay = new javax.swing.JButton();
         jbDownload = new javax.swing.JButton();
         jbGoOut = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jbWelcome = new javax.swing.JButton();
+        jbUsers = new javax.swing.JButton();
+        jbProducts = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jlDate = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jlIsUploaded = new javax.swing.JLabel();
-        jlNameFileSelected = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jlIcon = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
         jbXGouOut = new javax.swing.JButton();
 
@@ -151,59 +141,56 @@ public class PanelMenu extends javax.swing.JFrame {
         jlLogotipe.setToolTipText("");
         jlLogotipe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jbAddUser.setBackground(new java.awt.Color(38, 69, 159));
-        jbAddUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbAddUser.setForeground(new java.awt.Color(255, 255, 255));
-        jbAddUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\icons8-add-user-20.png")); // NOI18N
-        jbAddUser.setText("  Ingresar usuarios");
-        jbAddUser.setBorder(null);
-        jbAddUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jbAddUser.setEnabled(false);
-        jbAddUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbAddUser.addActionListener(new java.awt.event.ActionListener() {
+        jbConsumption.setBackground(new java.awt.Color(38, 69, 159));
+        jbConsumption.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbConsumption.setForeground(new java.awt.Color(255, 255, 255));
+        jbConsumption.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-waiter-20.png")); // NOI18N
+        jbConsumption.setText("  Registrar consumo");
+        jbConsumption.setBorder(null);
+        jbConsumption.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbConsumption.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbConsumption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAddUserActionPerformed(evt);
+                jbConsumptionActionPerformed(evt);
             }
         });
 
-        jbDeleteUser.setBackground(new java.awt.Color(38, 69, 159));
-        jbDeleteUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbDeleteUser.setForeground(new java.awt.Color(255, 255, 255));
-        jbDeleteUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\icons8-denied-20.png")); // NOI18N
-        jbDeleteUser.setText("  Eliminar usuarios");
-        jbDeleteUser.setBorder(null);
-        jbDeleteUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jbDeleteUser.setEnabled(false);
-        jbDeleteUser.setHideActionText(true);
-        jbDeleteUser.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        jbDeleteUser.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jbDeleteUser.setMargin(new java.awt.Insets(10, 14, 3, 14));
-        jbDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+        jbBeneficiaries.setBackground(new java.awt.Color(38, 69, 159));
+        jbBeneficiaries.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbBeneficiaries.setForeground(new java.awt.Color(255, 255, 255));
+        jbBeneficiaries.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-users-20.png")); // NOI18N
+        jbBeneficiaries.setText("  Beneficiarios");
+        jbBeneficiaries.setBorder(null);
+        jbBeneficiaries.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbBeneficiaries.setHideActionText(true);
+        jbBeneficiaries.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbBeneficiaries.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbBeneficiaries.setMargin(new java.awt.Insets(10, 14, 3, 14));
+        jbBeneficiaries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbDeleteUserActionPerformed(evt);
+                jbBeneficiariesActionPerformed(evt);
             }
         });
 
-        jbListUsers.setBackground(new java.awt.Color(38, 69, 159));
-        jbListUsers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbListUsers.setForeground(new java.awt.Color(255, 255, 255));
-        jbListUsers.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\icons8-list-20.png")); // NOI18N
-        jbListUsers.setText("  Lista de usuarios");
-        jbListUsers.setBorder(null);
-        jbListUsers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jbListUsers.setEnabled(false);
-        jbListUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbListUsers.addActionListener(new java.awt.event.ActionListener() {
+        jbLunchOfTheDay.setBackground(new java.awt.Color(38, 69, 159));
+        jbLunchOfTheDay.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbLunchOfTheDay.setForeground(new java.awt.Color(255, 255, 255));
+        jbLunchOfTheDay.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-tableware-20.png")); // NOI18N
+        jbLunchOfTheDay.setText("  Almuerzo del día");
+        jbLunchOfTheDay.setBorder(null);
+        jbLunchOfTheDay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jbLunchOfTheDay.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbLunchOfTheDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbListUsersActionPerformed(evt);
+                jbLunchOfTheDayActionPerformed(evt);
             }
         });
 
         jbDownload.setBackground(new java.awt.Color(38, 69, 159));
         jbDownload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jbDownload.setForeground(new java.awt.Color(255, 255, 255));
-        jbDownload.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\icons8-export-20.png")); // NOI18N
-        jbDownload.setText("  Gestión de archivos");
+        jbDownload.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-table-20.png")); // NOI18N
+        jbDownload.setText("  Inventario");
         jbDownload.setBorder(null);
         jbDownload.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jbDownload.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -216,7 +203,6 @@ public class PanelMenu extends javax.swing.JFrame {
         jbGoOut.setBackground(new java.awt.Color(38, 69, 159));
         jbGoOut.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jbGoOut.setForeground(new java.awt.Color(255, 255, 255));
-        jbGoOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\icons8-off-20.png")); // NOI18N
         jbGoOut.setText("  Salir");
         jbGoOut.setBorder(null);
         jbGoOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -230,6 +216,45 @@ public class PanelMenu extends javax.swing.JFrame {
         jSeparator1.setToolTipText("");
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        jbWelcome.setBackground(new java.awt.Color(38, 69, 159));
+        jbWelcome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbWelcome.setForeground(new java.awt.Color(255, 255, 255));
+        jbWelcome.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-home-20.png")); // NOI18N
+        jbWelcome.setText("  Principal");
+        jbWelcome.setBorder(null);
+        jbWelcome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbWelcome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbWelcomeActionPerformed(evt);
+            }
+        });
+
+        jbUsers.setBackground(new java.awt.Color(38, 69, 159));
+        jbUsers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jbUsers.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-user-20.png")); // NOI18N
+        jbUsers.setText("  Usuarios");
+        jbUsers.setBorder(null);
+        jbUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbUsersActionPerformed(evt);
+            }
+        });
+
+        jbProducts.setBackground(new java.awt.Color(38, 69, 159));
+        jbProducts.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbProducts.setForeground(new java.awt.Color(255, 255, 255));
+        jbProducts.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-products-20.png")); // NOI18N
+        jbProducts.setText("  Productos");
+        jbProducts.setBorder(null);
+        jbProducts.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbProductsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpLeftPanelLayout = new javax.swing.GroupLayout(jpLeftPanel);
         jpLeftPanel.setLayout(jpLeftPanelLayout);
         jpLeftPanelLayout.setHorizontalGroup(
@@ -237,35 +262,49 @@ public class PanelMenu extends javax.swing.JFrame {
             .addGroup(jpLeftPanelLayout.createSequentialGroup()
                 .addGroup(jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpLeftPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbGoOut, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbDownload, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(jbAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbListUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jpLeftPanelLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
                         .addGroup(jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlLogotipe, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jpLeftPanelLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlLogotipe, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpLeftPanelLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addGroup(jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jbGoOut, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbDownload, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(jbConsumption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbBeneficiaries, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbLunchOfTheDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbProducts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLeftPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jbWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpLeftPanelLayout.setVerticalGroup(
             jpLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLeftPanelLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(46, 46, 46)
                 .addComponent(jlLogotipe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jbDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addComponent(jbWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jbConsumption, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbLunchOfTheDay, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbBeneficiaries, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbListUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbGoOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -275,72 +314,57 @@ public class PanelMenu extends javax.swing.JFrame {
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(220, 220, 220));
 
         jlDate.setBackground(new java.awt.Color(38, 69, 159));
-        jlDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlDate.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jlDate.setText("Date");
         jlDate.setToolTipText("");
 
-        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setBackground(new java.awt.Color(242, 242, 242));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jButton1.setText("Cerrar sesión");
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jlIsUploaded.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jlIsUploaded.setForeground(new java.awt.Color(255, 51, 51));
-        jlIsUploaded.setText("CARGAR ARCHIVO");
-
-        jlNameFileSelected.setBackground(new java.awt.Color(255, 255, 255));
-        jlNameFileSelected.setForeground(new java.awt.Color(255, 51, 51));
-        jlNameFileSelected.setText("Ningun archivo subido");
-        jlNameFileSelected.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jlIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\load-64-red.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\AyVDiningRoom\\resources\\images\\icons8-user-45.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jlIcon)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlNameFileSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlIsUploaded, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jlDate, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(419, 419, 419)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlDate, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jlDate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jlNameFileSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlIsUploaded, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))
-                            .addComponent(jlIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jlDate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setForeground(new java.awt.Color(153, 153, 153));
+        content.setForeground(new java.awt.Color(255, 255, 255));
         content.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 contentComponentAdded(evt);
@@ -351,11 +375,11 @@ public class PanelMenu extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1033, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
 
         jbXGouOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -378,22 +402,22 @@ public class PanelMenu extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jbXGouOut, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jbXGouOut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -419,54 +443,48 @@ public class PanelMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddUserActionPerformed
-                      
-        
-        PanelAddUser pAddUser = new PanelAddUser(this);
-        pAddUser.setSize(998, 598);
-        pAddUser.setLocation(0, 0);                  
+    private void jbConsumptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsumptionActionPerformed
+        PanelConsumption pConsumption = new PanelConsumption(this);
+        pConsumption.setSize(1057, 660);
+        pConsumption.setLocation(0, 0);                  
         
         content.removeAll();
-        content.add(pAddUser, BorderLayout.CENTER);
+        content.add(pConsumption, BorderLayout.CENTER);
         content.revalidate();
-        content.repaint();                                                 
-    }//GEN-LAST:event_jbAddUserActionPerformed
+        content.repaint();  
+    }//GEN-LAST:event_jbConsumptionActionPerformed
 
-    private void jbDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeleteUserActionPerformed
-        
-        
-        PanelDeleteUser pDelUser = new PanelDeleteUser();
-        pDelUser.setSize(998, 598);
-        pDelUser.setLocation(0, 0);                  
+    private void jbBeneficiariesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBeneficiariesActionPerformed
+               
+        ListBeneficiaries listBeneficiaries = new ListBeneficiaries(this);
+        listBeneficiaries.setSize(1057, 660);
+        listBeneficiaries.setLocation(0, 0);                  
         
         content.removeAll();
-        content.add(pDelUser, BorderLayout.CENTER);
+        content.add(listBeneficiaries, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();    
-    }//GEN-LAST:event_jbDeleteUserActionPerformed
+    }//GEN-LAST:event_jbBeneficiariesActionPerformed
 
-    private void jbListUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListUsersActionPerformed
-        
-        
-        ListUsers listUsers = new ListUsers(this);
-        listUsers.setSize(1033, 654);
-        listUsers.setLocation(0, 0);                  
+    private void jbLunchOfTheDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLunchOfTheDayActionPerformed
+        PanelLunchOfTheDay lunchOfTheDay = new PanelLunchOfTheDay(this);
+        lunchOfTheDay.setSize(1057, 660);
+        lunchOfTheDay.setLocation(0, 0);                  
         
         content.removeAll();
-        content.add(listUsers, BorderLayout.CENTER);
+        content.add(lunchOfTheDay, BorderLayout.CENTER);
         content.revalidate();
-        content.repaint(); 
-    }//GEN-LAST:event_jbListUsersActionPerformed
+        content.repaint();                  
+    }//GEN-LAST:event_jbLunchOfTheDayActionPerformed
 
     private void jbDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDownloadActionPerformed
-               
-        
-        FileManagement fileManagement = new FileManagement(this);
-        fileManagement.setSize(1033, 654);
-        fileManagement.setLocation(0, 0);                  
+                    
+        PanelInventory inventory = new PanelInventory(this);
+        inventory.setSize(1057, 660);
+        inventory.setLocation(0, 0);                  
         
         content.removeAll();
-        content.add(fileManagement, BorderLayout.CENTER);
+        content.add(inventory, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();  
     }//GEN-LAST:event_jbDownloadActionPerformed
@@ -498,6 +516,87 @@ public class PanelMenu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbXGouOutActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // Crear un objeto JFileChooser
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(this);
+                       
+        // Verificar si el usuario seleccionó un archivo
+        if (returnValue == fileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            java.io.File selectedFile = fileChooser.getSelectedFile();
+            //pMenu.setFilePath(selectedFile.getAbsolutePath());
+                                    
+            setFilePath(selectedFile.getAbsolutePath());                        
+            System.out.println("Archivo seleccionado: " + getFilePath());
+            
+            Color colorLabel = new Color(0, 208, 0); 
+            
+            //Se cambian los colores de los labels
+            //setTextNameFileSelected(selectedFile.getName());
+            //getNameFileSelected().setForeground(colorLabel);
+            //setTextIsUploaded("ARCHIVO SUBIDO");
+            //getIsUploaded().setForeground(colorLabel);
+            
+            //Se cambia color del icono llamando a un método para establecer el icono usando la ruta absoluta
+            try {               
+                setIconFromFile("C:\\Users\\judav\\Desktop\\Desktop\\All\\React js\\Java\\register_beneficiaries\\RegisterBeneficiaries\\register_beneficiaries\\resources\\images\\load-64-green.png");
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(FileManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //Se habilitan los modulos
+            getButtonAddUser().setEnabled(true);
+            getButtonDeleteUser().setEnabled(true);
+            getButtonListUsers().setEnabled(true);                      
+        } else {
+            System.out.println("Operación cancelada por el usuario.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jbUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbUsersActionPerformed
+        // TODO add your handling code here:
+        ListUsers listUsers = new ListUsers(this);
+        listUsers.setSize(1057, 660);
+        listUsers.setLocation(0, 0);                  
+        
+        content.removeAll();
+        content.add(listUsers, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint(); 
+    }//GEN-LAST:event_jbUsersActionPerformed
+
+    private void jbWelcomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbWelcomeActionPerformed
+        // TODO add your handling code here:
+        PanelWelcome pWelcome = new PanelWelcome(this);
+        pWelcome.setSize(1057, 1057);
+        pWelcome.setLocation(0, 0);                  
+        
+        content.removeAll();
+        content.add(pWelcome, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();  
+    }//GEN-LAST:event_jbWelcomeActionPerformed
+
+    private void jbProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProductsActionPerformed
+        PanelProducts pProducts = new PanelProducts(this);
+        pProducts.setSize(1057, 1057);
+        pProducts.setLocation(0, 0);                  
+        
+        content.removeAll();
+        content.add(pProducts, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();  
+    }//GEN-LAST:event_jbProductsActionPerformed
+
+    public void setIconFromFile(String filePath) throws MalformedURLException {
+        // Crea un ImageIcon a partir de la ruta del archivo
+        ImageIcon icon = new ImageIcon(new ImageIcon(filePath).getImage());
+        // Establece el icono en el JLabel
+        //getIconFile().setIcon(icon);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -535,25 +634,25 @@ public class PanelMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JButton jbAddUser;
-    private javax.swing.JButton jbDeleteUser;
+    private javax.swing.JButton jbBeneficiaries;
+    private javax.swing.JButton jbConsumption;
     private javax.swing.JButton jbDownload;
     private javax.swing.JButton jbGoOut;
-    private javax.swing.JButton jbListUsers;
+    private javax.swing.JButton jbLunchOfTheDay;
+    private javax.swing.JButton jbProducts;
+    private javax.swing.JButton jbUsers;
+    private javax.swing.JButton jbWelcome;
     private javax.swing.JButton jbXGouOut;
     private javax.swing.JLabel jlDate;
-    private javax.swing.JLabel jlIcon;
-    private javax.swing.JLabel jlIsUploaded;
     private javax.swing.JLabel jlLogotipe;
-    private javax.swing.JLabel jlNameFileSelected;
     private javax.swing.JPanel jpLeftPanel;
     // End of variables declaration//GEN-END:variables
 }
