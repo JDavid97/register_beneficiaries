@@ -4,10 +4,14 @@
  */
 package frames;
 
+import ayvdiningroom.DAOBeneficiariesImpl;
+import interfaces.DAOBeneficiaries;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import models.Beneficiaries;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
@@ -21,12 +25,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author judav
  */
-public class PanelAddUser extends javax.swing.JPanel {
+public class PanelAddBeneficiarie extends javax.swing.JPanel {
     private PanelMenu pMenu;    
     
-    public PanelAddUser(PanelMenu pMenu) {
-        initComponents();
-        this.pMenu = pMenu;
+    public PanelAddBeneficiarie() {
+        initComponents();        
     }
 
     /**
@@ -144,37 +147,37 @@ public class PanelAddUser extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jcbDocumentType, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                         .addComponent(jtNames, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jtLastNames, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jtDocumentNum, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addComponent(jtDocumentNum, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jcbDocumentType, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel7)
+                        .addComponent(jtNeighborhood)
+                        .addComponent(jLabel8)
+                        .addComponent(jtAddress)
+                        .addComponent(jtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(30, 30, 30)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7)
-                            .addComponent(jtNeighborhood)
-                            .addComponent(jLabel8)
-                            .addComponent(jtAddress)
-                            .addComponent(jtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
@@ -198,33 +201,33 @@ public class PanelAddUser extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addGap(47, 47, 47)
                                 .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtNames, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jtLastNames, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcbDocumentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(32, 32, 32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jcbDocumentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtDocumentNum, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(81, 81, 81))
+                .addGap(140, 140, 140))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,72 +242,26 @@ public class PanelAddUser extends javax.swing.JPanel {
         neighborhood = jtNeighborhood.getText();
         phone = jtPhone.getText();
         address = jtAddress.getText();
-        //System.out.println("DATA QUE MANDA: ");
-        //System.out.println(names + " " + lastNames + " " +age+" "+documentType+" "+documentNumber+" "+neighborhood+" "+phone+" "+address); 
-               
-        String filePath = "";
         
-        if(!pMenu.getFilePath().isEmpty()){
-            filePath = pMenu.getFilePath();
-        }
-                              
-        try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
-            // Cargar el libro de trabajo (Workbook) desde el archivo existente
-            Workbook workbook = new XSSFWorkbook(fileInputStream);
-
-            // Obtener la hoja de trabajo (Sheet) por índice o nombre
-            Sheet sheet = workbook.getSheetAt(0);
-            
-            // Encontrar la última fila ocupada en la columna especificada
-            int lastRow = findLastRow(sheet, 2);
-            
-            System.out.println("ULTIMA FILA: "+lastRow);
-            // Crear una nueva fila después de la última
-
-            Row newRow = sheet.createRow(lastRow + 1);
-
-            // Modificar o agregar datos a la hoja de trabajo según sea necesario           
-            Object[][] data = {                
-                {names+" "+lastNames, documentType, documentNumber, age, neighborhood, address, "", phone}
-            };
-            // Escribir datos en la hoja
-
-            for (Object[] rowData : data) {
-                //Row row = sheet.createRow(rowNum++);
-                int colNum = 1;
-                for (Object field : rowData) {
-                    Cell cell = newRow.createCell(colNum++);
-                    if (field instanceof String) {
-                        cell.setCellValue((String) field);
-                    } else if (field instanceof Integer) {
-                        cell.setCellValue((Integer) field);
-                    }
-                    // Puedes agregar más tipos de datos según sea necesario
-                }
-            }
-
-            // Guardar los cambios en el mismo archivo
-            try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
-                workbook.write(fileOutputStream);
-            }            
-            JOptionPane.showMessageDialog(null, "El usuario "+names+" "+lastNames+" fue registrado exitosamente.");            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }                      
+        Beneficiaries beneficiarie = new Beneficiaries();
+        
+        beneficiarie.setNames(names);
+        beneficiarie.setLastnames(lastNames);
+        beneficiarie.setType_document(documentType);
+        beneficiarie.setNum_document(documentNumber);
+        beneficiarie.setAge(Integer.parseInt(age));
+        beneficiarie.setNeighborhood(neighborhood);
+        beneficiarie.setAddress(phone);
+        beneficiarie.setPhone(address);
+        
+        try {
+            DAOBeneficiaries dao = new DAOBeneficiariesImpl();
+            dao.insert(beneficiarie);            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }                           
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private static int findLastRow(Sheet sheet, int columna) {
-        int lastRow = -1;
-
-        for (Row row : sheet) {
-            Cell cell = row.getCell(columna);
-            if (cell != null && cell.getCellType() != CellType.BLANK) {
-                lastRow = row.getRowNum();
-            }
-        }
-
-        return lastRow;
-    }    
+  
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         clear();
