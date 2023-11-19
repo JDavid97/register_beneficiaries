@@ -8,11 +8,11 @@ package frames;
  *
  * @author judav
  */
-public class ListUsers extends javax.swing.JPanel {
+public class PanelProducts extends javax.swing.JPanel {
 
-    private PanelMenu pMenu;
+    PanelMenu pMenu;
     
-    public ListUsers(PanelMenu pMenu) {
+    public PanelProducts(PanelMenu pMenu) {
         initComponents();
         this.pMenu = pMenu;
     }
@@ -26,18 +26,28 @@ public class ListUsers extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPaneListUsers = new javax.swing.JScrollPane();
-        jtableListUsers = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jbAddUser = new javax.swing.JButton();
+        jScrollPaneListProducts = new javax.swing.JScrollPane();
+        jtableListBeneficiaries = new javax.swing.JTable();
+        jbAddProduct = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jtableListUsers.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Listado de productos");
+        jLabel1.setPreferredSize(new java.awt.Dimension(299, 32));
+        jLabel1.setRequestFocusEnabled(false);
+
+        jButton1.setBackground(new java.awt.Color(38, 69, 159));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Buscar");
+
+        jtableListBeneficiaries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -72,25 +82,15 @@ public class ListUsers extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPaneListUsers.setViewportView(jtableListUsers);
+        jScrollPaneListProducts.setViewportView(jtableListBeneficiaries);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Listado de usuarios");
-        jLabel1.setPreferredSize(new java.awt.Dimension(299, 32));
-        jLabel1.setRequestFocusEnabled(false);
-
-        jButton1.setBackground(new java.awt.Color(38, 69, 159));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Buscar");
-
-        jbAddUser.setBackground(new java.awt.Color(38, 69, 159));
-        jbAddUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbAddUser.setForeground(new java.awt.Color(255, 255, 255));
-        jbAddUser.setText("Nuevo");
-        jbAddUser.addActionListener(new java.awt.event.ActionListener() {
+        jbAddProduct.setBackground(new java.awt.Color(38, 69, 159));
+        jbAddProduct.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbAddProduct.setForeground(new java.awt.Color(255, 255, 255));
+        jbAddProduct.setText("Nuevo");
+        jbAddProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAddUserActionPerformed(evt);
+                jbAddProductActionPerformed(evt);
             }
         });
 
@@ -110,29 +110,29 @@ public class ListUsers extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jbAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPaneListProducts)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPaneListUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE))
-                        .addGap(33, 33, 33))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -140,20 +140,19 @@ public class ListUsers extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPaneListUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addComponent(jScrollPaneListProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddUserActionPerformed
-        // TODO add your handling code here:  
+    private void jbAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddProductActionPerformed
 
-    }//GEN-LAST:event_jbAddUserActionPerformed
+    }//GEN-LAST:event_jbAddProductActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,9 +160,9 @@ public class ListUsers extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPaneListUsers;
+    private javax.swing.JScrollPane jScrollPaneListProducts;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton jbAddUser;
-    private javax.swing.JTable jtableListUsers;
+    private javax.swing.JButton jbAddProduct;
+    private javax.swing.JTable jtableListBeneficiaries;
     // End of variables declaration//GEN-END:variables
 }

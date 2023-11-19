@@ -113,10 +113,10 @@ public class FileManagement extends javax.swing.JPanel {
             Color colorLabel = new Color(0, 208, 0); 
             
             //Se cambian los colores de los labels
-            pMenu.setTextNameFileSelected(selectedFile.getName());
-            pMenu.getNameFileSelected().setForeground(colorLabel);
-            pMenu.setTextIsUploaded("ARCHIVO SUBIDO");
-            pMenu.getIsUploaded().setForeground(colorLabel);
+            //pMenu.setTextNameFileSelected(selectedFile.getName());
+            //pMenu.getNameFileSelected().setForeground(colorLabel);
+            //pMenu.setTextIsUploaded("ARCHIVO SUBIDO");
+            //pMenu.getIsUploaded().setForeground(colorLabel);
             
             //Se cambia color del icono llamando a un método para establecer el icono usando la ruta absoluta
             try {               
@@ -126,9 +126,9 @@ public class FileManagement extends javax.swing.JPanel {
             }
             
             //Se habilitan los modulos
-            pMenu.getButtonAddUser().setEnabled(true);
-            pMenu.getButtonDeleteUser().setEnabled(true);
-            pMenu.getButtonListUsers().setEnabled(true);                      
+            //pMenu.getButtonAddUser().setEnabled(true);
+            //pMenu.getButtonDeleteUser().setEnabled(true);
+            //pMenu.getButtonListUsers().setEnabled(true);                      
         } else {
             System.out.println("Operación cancelada por el usuario.");
         }
@@ -138,7 +138,7 @@ public class FileManagement extends javax.swing.JPanel {
         // Crea un ImageIcon a partir de la ruta del archivo
         ImageIcon icon = new ImageIcon(new ImageIcon(filePath).getImage());
         // Establece el icono en el JLabel
-        pMenu.getIconFile().setIcon(icon);
+        //pMenu.getIconFile().setIcon(icon);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
