@@ -12,7 +12,7 @@ public class Database {
     private final String DB_URL = "jdbc:mysql://localhost/ayvdiningroom";
     
     private final String USER = "root";
-    private final String PASS = "judaorfi0997";
+    private final String PASS = "123456";
     
     public void Conect() throws SQLException{
         conexion = DriverManager.getConnection(DB_URL, USER, PASS);
