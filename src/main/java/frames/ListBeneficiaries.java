@@ -128,6 +128,11 @@ public class ListBeneficiaries extends javax.swing.JPanel {
         jbSearchBeneficiaries.setForeground(new java.awt.Color(255, 255, 255));
         jbSearchBeneficiaries.setText("Buscar");
         jbSearchBeneficiaries.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbSearchBeneficiaries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSearchBeneficiariesActionPerformed(evt);
+            }
+        });
 
         jtableListBeneficiaries.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -224,13 +229,12 @@ public class ListBeneficiaries extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAddBeneficiarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAddBeneficiarieActionPerformed
-        // TODO add your handling code here:
-        PanelAddBeneficiarie pAddUser = new PanelAddBeneficiarie();
-        pAddUser.setSize(1057, 660);
-        pAddUser.setLocation(0, 0);                  
+        PanelAddBeneficiarie pAddBeneficiarie = new PanelAddBeneficiarie();
+        pAddBeneficiarie.setSize(1097, 685);
+        pAddBeneficiarie.setLocation(0, 0);                  
         
-        pMenu.setPanelContent(pAddUser);
-   
+        pMenu.setPanelContent(pAddBeneficiarie);
+        pMenu.setjlTitleContent("Adicionar beneficiario");
     }//GEN-LAST:event_jbAddBeneficiarieActionPerformed
 
     private void jtBeneficiarieSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBeneficiarieSearchActionPerformed
@@ -242,41 +246,79 @@ public class ListBeneficiaries extends javax.swing.JPanel {
         String idsBeneficiaries = "";
         int count = 0;
         
-        for (int i : jtableListBeneficiaries.getSelectedRows()){    
-            idsBeneficiaries += jtableListBeneficiaries.getValueAt(i, 0)+",";                        
-            names += jtableListBeneficiaries.getValueAt(i, 1)+", ";                
-            count++;
-        }   
-        
-        idsBeneficiaries = idsBeneficiaries.substring(0, idsBeneficiaries.length()-1);
-        names = names.substring(0, names.length()-2);
-                
-        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar a "+names+"?", "Confirmar salida", JOptionPane.YES_NO_OPTION);                 
-        
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            try {
-                DAOBeneficiaries dao = new DAOBeneficiariesImpl();
-                dao.delete(idsBeneficiaries);    
-                
-                if(count == 1){
-                    javax.swing.JOptionPane.showMessageDialog(this, names+" se eliminó correctamente. \n", "AVISO", JOptionPane.INFORMATION_MESSAGE);          
-                }else{
-                    javax.swing.JOptionPane.showMessageDialog(this, names+" se eliminaron correctamente. \n", "AVISO", JOptionPane.INFORMATION_MESSAGE);          
-                }   
-                DefaultTableModel model = (DefaultTableModel) jtableListBeneficiaries.getModel(); 
-                model.setRowCount(0);
-                             
-                loadBeneficiaries();
-            }catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al eliminar los registros \n", "AVISO", JOptionPane.ERROR_MESSAGE);
-                System.out.println(e.getMessage());
-            } 
-        }               
+        if(jtableListBeneficiaries.getSelectedRow() > -1){                    
+            for (int i : jtableListBeneficiaries.getSelectedRows()){    
+                idsBeneficiaries += jtableListBeneficiaries.getValueAt(i, 0)+",";                        
+                names += jtableListBeneficiaries.getValueAt(i, 1)+", ";                
+                count++;
+            }   
+
+            idsBeneficiaries = idsBeneficiaries.substring(0, idsBeneficiaries.length()-1);
+            names = names.substring(0, names.length()-2);
+
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar a "+names+"?", "Confirmar salida", JOptionPane.YES_NO_OPTION);                 
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                try {
+                    DAOBeneficiaries dao = new DAOBeneficiariesImpl();
+                    dao.delete(idsBeneficiaries);    
+
+                    if(count == 1){
+                        javax.swing.JOptionPane.showMessageDialog(this, names+" se eliminó correctamente. \n", "AVISO", JOptionPane.INFORMATION_MESSAGE);          
+                    }else{
+                        javax.swing.JOptionPane.showMessageDialog(this, names+" se eliminaron correctamente. \n", "AVISO", JOptionPane.INFORMATION_MESSAGE);          
+                    }   
+                    DefaultTableModel model = (DefaultTableModel) jtableListBeneficiaries.getModel(); 
+                    model.setRowCount(0);
+
+                    loadBeneficiaries();
+                }catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al eliminar los registros \n", "AVISO", JOptionPane.ERROR_MESSAGE);
+                    System.out.println(e.getMessage());
+                } 
+            }
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar los registros a eliminar. \n", "AVISO", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jbDeleteBeneficiariesActionPerformed
     
     private void jbEditBeneficiarieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditBeneficiarieActionPerformed
-        // TODO add your handling code here:
+        if(jtableListBeneficiaries.getSelectedRow() > -1){
+            int idBeneficiarie = (int) jtableListBeneficiaries.getValueAt(jtableListBeneficiaries.getSelectedRow(), 0);
+            
+            try {
+                    DAOBeneficiaries dao = new DAOBeneficiariesImpl();
+                    Beneficiaries beneficiarie = dao.getBeneficiarieById(idBeneficiarie);                                                               
+
+                    PanelAddBeneficiarie pEditBeneficiarie = new PanelAddBeneficiarie(beneficiarie);
+                    pEditBeneficiarie.setSize(1097, 685);
+                    pEditBeneficiarie.setLocation(0, 0);  
+                    
+                    pMenu.setPanelContent(pEditBeneficiarie);
+                    pMenu.setjlTitleContent("Editar beneficiario");
+                    
+                    
+                }catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al editar el registro \n", "AVISO", JOptionPane.ERROR_MESSAGE);
+                    System.out.println(e.getMessage());
+                }               
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un registro para editar. \n", "AVISO", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_jbEditBeneficiarieActionPerformed
+
+    private void jbSearchBeneficiariesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchBeneficiariesActionPerformed
+        try {
+            DAOBeneficiaries dao = new DAOBeneficiariesImpl();
+            DefaultTableModel model = (DefaultTableModel) jtableListBeneficiaries.getModel();
+                        
+            model.setRowCount(0);
+            //List<models.Beneficiaries> list = dao.listByName(jtBeneficiarieSearch.getName());
+            dao.listByName(jtBeneficiarieSearch.getText()).forEach((b) -> model.addRow(new Object[]{b.getId(), b.getNames(), b.getLastnames(), b.getType_document(), b.getNum_document(), b.getAge(), b.getNeighborhood(), b.getAddress(), b.getPhone()}));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jbSearchBeneficiariesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
