@@ -17,6 +17,7 @@ public class PanelMenu extends javax.swing.JFrame {
     
     public PanelMenu() {                                                                  
         //setUndecorated(true);  
+        super("A&V Dinning Room");
         initComponents();
         setLocationRelativeTo(null);                   
         
@@ -91,6 +92,14 @@ public class PanelMenu extends javax.swing.JFrame {
     public JPanel getPanelContent() {
         return jpContent;
     }
+    
+    public JLabel getjlTitleContent() {
+        return jlTitleContent;
+    }
+
+    public void setjlTitleContent(String jlTitle) {
+        this.jlTitleContent.setText(jlTitle);
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
