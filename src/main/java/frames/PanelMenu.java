@@ -1,5 +1,6 @@
 package frames;
 
+import frames.products.PanelProducts;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.MalformedURLException;
