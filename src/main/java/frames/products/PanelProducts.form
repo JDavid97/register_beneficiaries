@@ -27,18 +27,18 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jbAddProduct" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jbEditProduct" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jbDeleteProducts" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPaneListProducts" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jTextField1" min="-2" pref="819" max="-2" attributes="0"/>
+                              <Component id="jtSearchProducts" min="-2" pref="819" max="-2" attributes="0"/>
                               <EmptySpace pref="43" max="32767" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="jbSearchProducts" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -52,16 +52,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" pref="42" max="32767" attributes="0"/>
+                  <Component id="jtSearchProducts" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jbSearchProducts" alignment="3" pref="42" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPaneListProducts" min="-2" pref="402" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbAddProduct" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="jbDeleteProducts" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="jbEditProduct" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
@@ -69,9 +69,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jtSearchProducts">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jbSearchProducts">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="97" red="66" type="rgb"/>
@@ -88,7 +88,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSearchProductsActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPaneListProducts">
@@ -98,19 +98,54 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtableListBeneficiaries">
+        <Component class="javax.swing.JTable" name="jtableListProducts">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="20">
-                <Column editable="true" title="Title 1" type="java.lang.String"/>
-                <Column editable="true" title="Title 2" type="java.lang.String"/>
-                <Column editable="true" title="Title 3" type="java.lang.String"/>
-                <Column editable="true" title="Title 4" type="java.lang.String"/>
-                <Column editable="true" title="Title 5" type="java.lang.String"/>
-                <Column editable="true" title="Title 6" type="java.lang.String"/>
-                <Column editable="true" title="Title 7" type="java.lang.String"/>
-                <Column editable="true" title="Title 8" type="java.lang.String"/>
+              <Table columnCount="6" rowCount="0">
+                <Column editable="false" title="id" type="java.lang.String"/>
+                <Column editable="true" title="Nombre" type="java.lang.String"/>
+                <Column editable="true" title="Estado" type="java.lang.String"/>
+                <Column editable="true" title="C&#xf3;digo interno" type="java.lang.String"/>
+                <Column editable="true" title="Precio" type="java.lang.String"/>
+                <Column editable="true" title="Unidad de medida" type="java.lang.String"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="45" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
         </Component>
@@ -136,7 +171,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbAddProductActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="jbEditProduct">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="97" red="66" type="rgb"/>
@@ -152,8 +187,11 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEditProductActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="jbDeleteProducts">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="97" red="66" type="rgb"/>
@@ -172,6 +210,9 @@
           <Dimension value="[87, 32]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDeleteProductsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
