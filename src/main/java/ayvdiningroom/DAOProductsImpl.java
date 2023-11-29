@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import models.Beneficiaries;
 import models.Products;
 
 public class DAOProductsImpl extends Database implements DAOProducts{
@@ -175,7 +174,5 @@ public class DAOProductsImpl extends Database implements DAOProducts{
         }
         
         return product;
-    }
-
-    
+    }   
 }
