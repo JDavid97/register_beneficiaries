@@ -6,29 +6,10 @@ package frames;
 
 import ayvdiningroom.DAOBeneficiariesImpl;
 import interfaces.DAOBeneficiaries;
-import java.awt.datatransfer.DataFlavor;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import models.Beneficiaries;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-/**
- *
- * @author judav
- */
 public class PanelAddBeneficiarie extends javax.swing.JPanel {
     private PanelMenu pMenu;       
     boolean isEdit = false;    
@@ -308,8 +289,7 @@ public class PanelAddBeneficiarie extends javax.swing.JPanel {
                 javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al editar el beneficiario \n", "AVISO", JOptionPane.ERROR_MESSAGE);
                 System.out.println(e.getMessage());                
             }
-        }        
-                      
+        }                              
     }//GEN-LAST:event_jbSaveBeneficiarieActionPerformed
     
     private void editBeneficiarie(Beneficiaries beneficiarieToEdit) {                                                 
